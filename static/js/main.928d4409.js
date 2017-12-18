@@ -822,7 +822,7 @@ else {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 function makeEmptyFunction(arg) {
@@ -2698,27 +2698,27 @@ var hat = module.exports = function (bits, base) {
     if (!base) base = 16;
     if (bits === undefined) bits = 128;
     if (bits <= 0) return '0';
-
+    
     var digits = Math.log(Math.pow(2, bits)) / Math.log(base);
     for (var i = 2; digits === Infinity; i *= 2) {
         digits = Math.log(Math.pow(2, bits / i)) / Math.log(base) * i;
     }
-
+    
     var rem = digits - Math.floor(digits);
-
+    
     var res = '';
-
+    
     for (var i = 0; i < Math.floor(digits); i++) {
         var x = Math.floor(Math.random() * base).toString(base);
         res = x + res;
     }
-
+    
     if (rem) {
         var b = Math.pow(base, rem);
         var x = Math.floor(Math.random() * b).toString(base);
         res = x + res;
     }
-
+    
     var parsed = parseInt(res, base);
     if (parsed !== Infinity && parsed >= Math.pow(2, bits)) {
         return hat(bits, base)
@@ -2734,24 +2734,24 @@ hat.rack = function (bits, base, expandBy) {
                 if (expandBy) bits += expandBy;
                 else throw new Error('too many ID collisions, use more bits')
             }
-
+            
             var id = hat(bits, base);
         } while (Object.hasOwnProperty.call(hats, id));
-
+        
         hats[id] = data;
         return id;
     };
     var hats = fn.hats = {};
-
+    
     fn.get = function (id) {
         return fn.hats[id];
     };
-
+    
     fn.set = function (id, value) {
         fn.hats[id] = value;
         return fn;
     };
-
+    
     fn.bits = bits || 128;
     fn.base = base || 16;
     return fn;
@@ -11477,7 +11477,7 @@ module.exports = getActiveElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @typechecks
- *
+ * 
  */
 
 /*eslint-disable no-self-compare */
@@ -11549,7 +11549,7 @@ module.exports = shallowEqual;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 var isTextNode = __webpack_require__(87);
@@ -11695,7 +11695,7 @@ var _createClass=function(){function defineProperties(target,props){for(var i=0;
 wmsUrl:"https://geoserver9.lizard.net/geoserver/hhnk/wms?service=WMS&request=GetMap&layers=hhnk_kwetsbaarheid_panden&styles=&format=image%2Fpng&transparent=true&version=1.1.1&url=https%3A%2F%2Fgeoserver9.lizard.net%2Fgeoserver%2Fhhnk%2Fwms&SRS=EPSG%3A3857&HEIGHT=256&WIDTH=256&height=256&width=256&srs=EPSG%3A3857&bbox={bbox-epsg-3857}"},{id:"kwetsbare_objecten",label:"Kwetsbare objecten",// "http://cors-anywhere.herokuapp.com/https://geoserver9.lizard.net/geoserver/hhnk/wms?service=WMS&request=GetMap&layers=hhnk_kwetsbare_objecten&styles=&format=image%2Fpng&transparent=true&version=1.1.1&url=https%3A%2F%2Fgeoserver9.lizard.net%2Fgeoserver%2Fhhnk%2Fwms&SRS=EPSG%3A3857&HEIGHT=256&WIDTH=256&height=256&width=256&srs=EPSG%3A3857&bbox={bbox-epsg-3857}"
 wmsUrl:"https://geoserver9.lizard.net/geoserver/hhnk/wms?service=WMS&request=GetMap&layers=hhnk_kwetsbare_objecten&styles=&format=image%2Fpng&transparent=true&version=1.1.1&url=https%3A%2F%2Fgeoserver9.lizard.net%2Fgeoserver%2Fhhnk%2Fwms&SRS=EPSG%3A3857&HEIGHT=256&WIDTH=256&height=256&width=256&srs=EPSG%3A3857&bbox={bbox-epsg-3857}"},{id:"begaanbaarheid_wegen",label:"Begaanbaarheid wegen",// "http://cors-anywhere.herokuapp.com/https://geoserver9.lizard.net/geoserver/hhnk/wms?service=WMS&request=GetMap&layers=hhnk_begaanbaarheid&styles=&format=image%2Fpng&transparent=true&version=1.1.1&url=https%3A%2F%2Fgeoserver9.lizard.net%2Fgeoserver%2Fhhnk%2Fwms&SRS=EPSG%3A3857&HEIGHT=256&WIDTH=256&height=256&width=256&srs=EPSG%3A3857&bbox={bbox-epsg-3857}"
 wmsUrl:"https://geoserver9.lizard.net/geoserver/hhnk/wms?service=WMS&request=GetMap&layers=hhnk_begaanbaarheid&styles=&format=image%2Fpng&transparent=true&version=1.1.1&url=https%3A%2F%2Fgeoserver9.lizard.net%2Fgeoserver%2Fhhnk%2Fwms&SRS=EPSG%3A3857&HEIGHT=256&WIDTH=256&height=256&width=256&srs=EPSG%3A3857&bbox={bbox-epsg-3857}"},{id:"stijging_grondwaterstanden",label:"Stijging grondwaterstanden",wmsUrl:"http://cors-anywhere.herokuapp.com/https://maps1.klimaatatlas.net/geoserver/hhnk/wms?service=WMS&request=GetMap&layers=s0188_nwm_mediaan_peilgebied_verschil_ghg_huidig_2050&styles=&format=image%2Fpng&transparent=true&version=1.1.1&url=https%3A%2F%2Fmaps1.klimaatatlas.net%2Fgeoserver%2Fhhnk%2Fwms&SRS=EPSG%3A28992&HEIGHT=256&WIDTH=256&height=256&width=256&srs=EPSG%3A3857&bbox={bbox-epsg-3857}"}];var sources=hhnk_layers.map(function(source,i){return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_mapbox_gl__["Source"],{key:"sourceKey_"+i,id:"wmslayer_"+i,tileJsonSource:{type:"raster",tiles:[source.wmsUrl],tileSize:256}});});var layers=hhnk_layers.map(function(layer,i){return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_react_mapbox_gl__["Layer"],{key:"layerKey_"+i,type:"raster",id:"wms_"+i,sourceId:"wmslayer_"+i});});var mask={type:"FeatureCollection",features:[{type:"Feature",properties:{},geometry:{type:"Polygon",coordinates:[[[4.76806640625,53.204387484117866],[4.6417236328125,53.075877572693564],[4.5758056640625,52.95194755829188],[4.537353515625,52.6946965109301],[4.501647949218749,52.49448734004674],[4.40277099609375,52.30176096373671],[4.60052490234375,52.26983815857981],[4.89715576171875,52.2378923494213],[5.130615234375,52.26311463698559],[5.3778076171875,52.3202320760974],[5.27069091796875,52.46103016351592],[5.40802001953125,52.50284765940397],[5.47393798828125,52.57468079766565],[5.3668212890625,52.688037606833454],[5.284423828125,52.777847147478944],[5.13885498046875,52.771200932880234],[5.1580810546875,52.85752259337269],[5.07843017578125,52.94201777829491],[4.97955322265625,53.03130376554964],[4.95758056640625,53.148417609197466],[4.954833984374999,53.199451902831555],[4.76806640625,53.204387484117866]]]}}]};var bounds=[-163.125,82.76537263027352,192.3046875,-50.06419173665909];function polyMask(mask,bounds){var bboxPoly=Object(__WEBPACK_IMPORTED_MODULE_2__turf_bbox_polygon__["a" /* default */])(bounds);return Object(__WEBPACK_IMPORTED_MODULE_3__turf_difference__["a" /* default */])(bboxPoly,mask);}var masker=polyMask(mask.features[0],bounds);var App=function(_Component){_inherits(App,_Component);function App(){_classCallCheck(this,App);var _this=_possibleConstructorReturn(this,(App.__proto__||Object.getPrototypeOf(App)).call(this));_this.state={currentGeometryId:null,currentSessionId:null,foregroundLayerId:0,ready:false,sessions:[],center:[4.851,52.645],zoom:[11]};_this.handleDelete=_this.handleDelete.bind(_this);_this.handleDrawPolygon=_this.handleDrawPolygon.bind(_this);_this.handleKeyUp=_this.handleKeyUp.bind(_this);_this.handleLoadSession=_this.handleLoadSession.bind(_this);_this.handleMapInit=_this.handleMapInit.bind(_this);_this.handleNewSession=_this.handleNewSession.bind(_this);_this.handlePublish=_this.handlePublish.bind(_this);_this.handleRemoveSession=_this.handleRemoveSession.bind(_this);_this.handleRenameSession=_this.handleRenameSession.bind(_this);return _this;}_createClass(App,[{key:"componentDidMount",value:function componentDidMount(){var _this2=this;document.addEventListener("keyup",this.handleKeyUp,false);// MARK: This is really not ok and should be done via an API
-fetch("https://cors-anywhere.herokuapp.com/https://hhnk.klimaatatlas.net/").then(function(result){return result.text();}).then(function(htmldata){var el=document.createElement("html");el.innerHTML=htmldata;var scriptElement=el.childNodes[0].children[8];// <script/> with data config object
+fetch("http://cors-anywhere.herokuapp.com/https://hhnk.klimaatatlas.net/").then(function(result){return result.text();}).then(function(htmldata){var el=document.createElement("html");el.innerHTML=htmldata;var scriptElement=el.childNodes[0].children[8];// <script/> with data config object
 var configJson=scriptElement.textContent;var local=document.createElement("script");local.innerHTML=configJson;document.head.appendChild(local);_this2.setState({config:window.data});});}},{key:"componentWillUnmount",value:function componentWillUnmount(){document.removeEventListener("keydown",this.handleKeyUp,false);}},{key:"persistState",value:function persistState(){localStorage.setItem("intekentool:state",JSON.stringify(this.state));}},{key:"handleKeyUp",value:function handleKeyUp(e){var _this3=this;if(e.keyCode===84){// t
 if(this.state.ready){this.handleDrawPolygon();}}if(e.keyCode===27){// esc
 this.handleDelete();}if(e.keyCode===78){// n
@@ -13444,7 +13444,7 @@ Store.prototype.restoreMapConfig = function() {
 /**
  * Returns the initial state of an interaction setting.
  * @param {string} interaction
- * @return {boolean} `true` if the interaction is enabled, `false` if not.
+ * @return {boolean} `true` if the interaction is enabled, `false` if not. 
  * Defaults to `true`. (Todo: include defaults.)
 */
 Store.prototype.getInitialConfigValue = function(interaction) {
@@ -14392,7 +14392,7 @@ Traverse.prototype.reduce = function (cb, init) {
 Traverse.prototype.paths = function () {
     var acc = [];
     this.forEach(function (x) {
-        acc.push(this.path);
+        acc.push(this.path); 
     });
     return acc;
 };
@@ -14407,24 +14407,24 @@ Traverse.prototype.nodes = function () {
 
 Traverse.prototype.clone = function () {
     var parents = [], nodes = [];
-
+    
     return (function clone (src) {
         for (var i = 0; i < parents.length; i++) {
             if (parents[i] === src) {
                 return nodes[i];
             }
         }
-
+        
         if (typeof src === 'object' && src !== null) {
             var dst = copy(src);
-
+            
             parents.push(src);
             nodes.push(dst);
-
+            
             forEach(objectKeys(src), function (key) {
                 dst[key] = clone(src[key]);
             });
-
+            
             parents.pop();
             nodes.pop();
             return dst;
@@ -14439,13 +14439,13 @@ function walk (root, cb, immutable) {
     var path = [];
     var parents = [];
     var alive = true;
-
+    
     return (function walker (node_) {
         var node = immutable ? copy(node_) : node_;
         var modifiers = {};
-
+        
         var keepGoing = true;
-
+        
         var state = {
             node : node,
             node_ : node_,
@@ -14484,17 +14484,17 @@ function walk (root, cb, immutable) {
             stop : function () { alive = false },
             block : function () { keepGoing = false }
         };
-
+        
         if (!alive) return state;
-
+        
         function updateState() {
             if (typeof state.node === 'object' && state.node !== null) {
                 if (!state.keys || state.node_ !== state.node) {
                     state.keys = objectKeys(state.node)
                 }
-
+                
                 state.isLeaf = state.keys.length == 0;
-
+                
                 for (var i = 0; i < parents.length; i++) {
                     if (parents[i].node_ === node_) {
                         state.circular = parents[i];
@@ -14506,49 +14506,49 @@ function walk (root, cb, immutable) {
                 state.isLeaf = true;
                 state.keys = null;
             }
-
+            
             state.notLeaf = !state.isLeaf;
             state.notRoot = !state.isRoot;
         }
-
+        
         updateState();
-
+        
         // use return values to update if defined
         var ret = cb.call(state, state.node);
         if (ret !== undefined && state.update) state.update(ret);
-
+        
         if (modifiers.before) modifiers.before.call(state, state.node);
-
+        
         if (!keepGoing) return state;
-
+        
         if (typeof state.node == 'object'
         && state.node !== null && !state.circular) {
             parents.push(state);
-
+            
             updateState();
-
+            
             forEach(state.keys, function (key, i) {
                 path.push(key);
-
+                
                 if (modifiers.pre) modifiers.pre.call(state, state.node[key], key);
-
+                
                 var child = walker(state.node[key]);
                 if (immutable && hasOwnProperty.call(state.node, key)) {
                     state.node[key] = child.node;
                 }
-
+                
                 child.isLast = i == state.keys.length - 1;
                 child.isFirst = i == 0;
-
+                
                 if (modifiers.post) modifiers.post.call(state, child);
-
+                
                 path.pop();
             });
             parents.pop();
         }
-
+        
         if (modifiers.after) modifiers.after.call(state, state.node);
-
+        
         return state;
     })(root).node;
 }
@@ -14556,7 +14556,7 @@ function walk (root, cb, immutable) {
 function copy (src) {
     if (typeof src === 'object' && src !== null) {
         var dst;
-
+        
         if (isArray(src)) {
             dst = [];
         }
@@ -14594,7 +14594,7 @@ function copy (src) {
             T.prototype = proto;
             dst = new T;
         }
-
+        
         forEach(objectKeys(src), function (key) {
             dst[key] = src[key];
         });
@@ -17312,7 +17312,7 @@ case 1:
                      .replace(/\\v/g,'\v')
                      .replace(/\\f/g,'\f')
                      .replace(/\\b/g,'\b');
-
+        
 break;
 case 2:
 this.$ = Number(yytext);
@@ -17360,7 +17360,7 @@ case 17:
                 this.$.__duplicateProperties__.push($$[$0][0]);
             }
             $$[$0-2][$$[$0][0]] = $$[$0][1];
-
+        
 break;
 case 18:
 this.$ = []; Object.defineProperty(this.$, '__line__', {
