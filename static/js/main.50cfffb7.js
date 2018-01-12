@@ -822,7 +822,7 @@ else {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * 
+ *
  */
 
 function makeEmptyFunction(arg) {
@@ -2698,27 +2698,27 @@ var hat = module.exports = function (bits, base) {
     if (!base) base = 16;
     if (bits === undefined) bits = 128;
     if (bits <= 0) return '0';
-    
+
     var digits = Math.log(Math.pow(2, bits)) / Math.log(base);
     for (var i = 2; digits === Infinity; i *= 2) {
         digits = Math.log(Math.pow(2, bits / i)) / Math.log(base) * i;
     }
-    
+
     var rem = digits - Math.floor(digits);
-    
+
     var res = '';
-    
+
     for (var i = 0; i < Math.floor(digits); i++) {
         var x = Math.floor(Math.random() * base).toString(base);
         res = x + res;
     }
-    
+
     if (rem) {
         var b = Math.pow(base, rem);
         var x = Math.floor(Math.random() * b).toString(base);
         res = x + res;
     }
-    
+
     var parsed = parseInt(res, base);
     if (parsed !== Infinity && parsed >= Math.pow(2, bits)) {
         return hat(bits, base)
@@ -2734,24 +2734,24 @@ hat.rack = function (bits, base, expandBy) {
                 if (expandBy) bits += expandBy;
                 else throw new Error('too many ID collisions, use more bits')
             }
-            
+
             var id = hat(bits, base);
         } while (Object.hasOwnProperty.call(hats, id));
-        
+
         hats[id] = data;
         return id;
     };
     var hats = fn.hats = {};
-    
+
     fn.get = function (id) {
         return fn.hats[id];
     };
-    
+
     fn.set = function (id, value) {
         fn.hats[id] = value;
         return fn;
     };
-    
+
     fn.bits = bits || 128;
     fn.base = base || 16;
     return fn;
@@ -11477,7 +11477,7 @@ module.exports = getActiveElement;
  * LICENSE file in the root directory of this source tree.
  *
  * @typechecks
- * 
+ *
  */
 
 /*eslint-disable no-self-compare */
@@ -11549,7 +11549,7 @@ module.exports = shallowEqual;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * 
+ *
  */
 
 var isTextNode = __webpack_require__(87);
@@ -13462,7 +13462,7 @@ Store.prototype.restoreMapConfig = function() {
 /**
  * Returns the initial state of an interaction setting.
  * @param {string} interaction
- * @return {boolean} `true` if the interaction is enabled, `false` if not. 
+ * @return {boolean} `true` if the interaction is enabled, `false` if not.
  * Defaults to `true`. (Todo: include defaults.)
 */
 Store.prototype.getInitialConfigValue = function(interaction) {
@@ -14410,7 +14410,7 @@ Traverse.prototype.reduce = function (cb, init) {
 Traverse.prototype.paths = function () {
     var acc = [];
     this.forEach(function (x) {
-        acc.push(this.path); 
+        acc.push(this.path);
     });
     return acc;
 };
@@ -14425,24 +14425,24 @@ Traverse.prototype.nodes = function () {
 
 Traverse.prototype.clone = function () {
     var parents = [], nodes = [];
-    
+
     return (function clone (src) {
         for (var i = 0; i < parents.length; i++) {
             if (parents[i] === src) {
                 return nodes[i];
             }
         }
-        
+
         if (typeof src === 'object' && src !== null) {
             var dst = copy(src);
-            
+
             parents.push(src);
             nodes.push(dst);
-            
+
             forEach(objectKeys(src), function (key) {
                 dst[key] = clone(src[key]);
             });
-            
+
             parents.pop();
             nodes.pop();
             return dst;
@@ -14457,13 +14457,13 @@ function walk (root, cb, immutable) {
     var path = [];
     var parents = [];
     var alive = true;
-    
+
     return (function walker (node_) {
         var node = immutable ? copy(node_) : node_;
         var modifiers = {};
-        
+
         var keepGoing = true;
-        
+
         var state = {
             node : node,
             node_ : node_,
@@ -14502,17 +14502,17 @@ function walk (root, cb, immutable) {
             stop : function () { alive = false },
             block : function () { keepGoing = false }
         };
-        
+
         if (!alive) return state;
-        
+
         function updateState() {
             if (typeof state.node === 'object' && state.node !== null) {
                 if (!state.keys || state.node_ !== state.node) {
                     state.keys = objectKeys(state.node)
                 }
-                
+
                 state.isLeaf = state.keys.length == 0;
-                
+
                 for (var i = 0; i < parents.length; i++) {
                     if (parents[i].node_ === node_) {
                         state.circular = parents[i];
@@ -14524,49 +14524,49 @@ function walk (root, cb, immutable) {
                 state.isLeaf = true;
                 state.keys = null;
             }
-            
+
             state.notLeaf = !state.isLeaf;
             state.notRoot = !state.isRoot;
         }
-        
+
         updateState();
-        
+
         // use return values to update if defined
         var ret = cb.call(state, state.node);
         if (ret !== undefined && state.update) state.update(ret);
-        
+
         if (modifiers.before) modifiers.before.call(state, state.node);
-        
+
         if (!keepGoing) return state;
-        
+
         if (typeof state.node == 'object'
         && state.node !== null && !state.circular) {
             parents.push(state);
-            
+
             updateState();
-            
+
             forEach(state.keys, function (key, i) {
                 path.push(key);
-                
+
                 if (modifiers.pre) modifiers.pre.call(state, state.node[key], key);
-                
+
                 var child = walker(state.node[key]);
                 if (immutable && hasOwnProperty.call(state.node, key)) {
                     state.node[key] = child.node;
                 }
-                
+
                 child.isLast = i == state.keys.length - 1;
                 child.isFirst = i == 0;
-                
+
                 if (modifiers.post) modifiers.post.call(state, child);
-                
+
                 path.pop();
             });
             parents.pop();
         }
-        
+
         if (modifiers.after) modifiers.after.call(state, state.node);
-        
+
         return state;
     })(root).node;
 }
@@ -14574,7 +14574,7 @@ function walk (root, cb, immutable) {
 function copy (src) {
     if (typeof src === 'object' && src !== null) {
         var dst;
-        
+
         if (isArray(src)) {
             dst = [];
         }
@@ -14612,7 +14612,7 @@ function copy (src) {
             T.prototype = proto;
             dst = new T;
         }
-        
+
         forEach(objectKeys(src), function (key) {
             dst[key] = src[key];
         });
@@ -17330,7 +17330,7 @@ case 1:
                      .replace(/\\v/g,'\v')
                      .replace(/\\f/g,'\f')
                      .replace(/\\b/g,'\b');
-        
+
 break;
 case 2:
 this.$ = Number(yytext);
@@ -17378,7 +17378,7 @@ case 17:
                 this.$.__duplicateProperties__.push($$[$0][0]);
             }
             $$[$0-2][$$[$0][0]] = $$[$0][1];
-        
+
 break;
 case 18:
 this.$ = []; Object.defineProperty(this.$, '__line__', {
@@ -32034,7 +32034,7 @@ window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?
 var publicUrl=new URL("",window.location);if(publicUrl.origin!==window.location.origin){// Our service worker won't work if PUBLIC_URL is on a different origin
 // from what our page is served on. This might happen if a CDN is used to
 // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
-return;}window.addEventListener('load',function(){var swUrl=""+'/service-worker.js';if(isLocalhost){// This is running on localhost. Lets check if a service worker still exists or not.
+return;}window.addEventListener('load',function(){var swUrl=""+'./service-worker.js';if(isLocalhost){// This is running on localhost. Lets check if a service worker still exists or not.
 checkValidServiceWorker(swUrl);}else{// Is not local host. Just register service worker
 registerValidSW(swUrl);}});}}function registerValidSW(swUrl){navigator.serviceWorker.register(swUrl).then(function(registration){registration.onupdatefound=function(){var installingWorker=registration.installing;installingWorker.onstatechange=function(){if(installingWorker.state==='installed'){if(navigator.serviceWorker.controller){// At this point, the old content will have been purged and
 // the fresh content will have been added to the cache.
